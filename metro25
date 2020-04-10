@@ -1,0 +1,29 @@
+state("metro25")
+{
+	int loadingb : "metro25.exe", 0x789830;
+	int lvlb : "metro25.exe", 0x38487C;
+	int loadings : "metro25.exe", 0x008A5AFC, 0x5C, 0x4, 0x0, 0x8, 0x10;
+	int lvls : "metro25.exe", 0x3F69C4;
+}
+
+
+isLoading
+{
+	if( current.loadingb > 0 || current.loadings > 0 )
+		return true;
+	else
+		return false;
+}
+start
+{
+	
+	return current.lvlb > old.lvlb || current.lvls > old.lvls;
+	
+}
+
+split
+{
+
+	return current.lvlb > old.lvlb || current.lvls > old.lvls;
+	
+}
